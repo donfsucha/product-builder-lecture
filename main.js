@@ -3,35 +3,35 @@ const paperButton = document.getElementById('paper');
 const scissorsButton = document.getElementById('scissors');
 const resultDiv = document.getElementById('result');
 
-const choices = ['rock', 'paper', 'scissors'];
+// 바위, 보, 가위 순서 (바위=0, 보=1, 가위=2)
+const choices = ['바위', '보', '가위'];
 
-rockButton.addEventListener('click', () => {
-    play('rock');
-});
-
-paperButton.addEventListener('click', () => {
-    play('paper');
-});
-
-scissorsButton.addEventListener('click', () => {
-    play('scissors');
-});
+rockButton.addEventListener('click', () => play('바위'));
+paperButton.addEventListener('click', () => play('보'));
+scissorsButton.addEventListener('click', () => play('가위'));
 
 function play(playerChoice) {
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-    let result;
+    let status = "";
+    let reason = "";
 
     if (playerChoice === computerChoice) {
-        result = "It's a tie!";
+        status = "비겼습니다!";
+        reason = `나: ${playerChoice}, 컴퓨터: ${computerChoice}로 서로 같습니다.`;
     } else if (
-        (playerChoice === 'rock' && computerChoice === 'scissors') ||
-        (playerChoice === 'paper' && computerChoice === 'rock') ||
-        (playerChoice === 'scissors' && computerChoice === 'paper')
+        (playerChoice === '바위' && computerChoice === '가위') ||
+        (playerChoice === '보' && computerChoice === '바위') ||
+        (playerChoice === '가위' && computerChoice === '보')
     ) {
-        result = `You win! ${playerChoice} beats ${computerChoice}`;
+        status = "이겼습니다! 🎉";
+        reason = `${playerChoice}(이)가 ${computerChoice}(을)를 이깁니다.`;
     } else {
-        result = `You lose! ${computerChoice} beats ${playerChoice}`;
+        status = "졌습니다... 😢";
+        reason = `${computerChoice}(이)가 ${playerChoice}(을)를 이깁니다.`;
     }
 
-    resultDiv.textContent = result;
+    resultDiv.innerHTML = `
+        <div style="font-size: 1.2em; margin-bottom: 10px;">${status}</div>
+        <div style="font-size: 0.8em; color: #666;">${reason}</div>
+    `;
 }
