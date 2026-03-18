@@ -152,3 +152,15 @@ button p {
         width: 60px;
     }
 }
+
+/* Disqus 댓글 섹션 스타일 */
+#disqus_thread {
+    width: 100%;
+    max-width: 500px;
+    margin: 60px auto 40px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
